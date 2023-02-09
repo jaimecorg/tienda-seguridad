@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header :: header"> </head>
+<body>
+    
+  <div th:replace="commons/menu :: menu"></div>
+
+    <!-- CARDS -->
+    <div class="container">
+      <a th:href="@{/productos/create}" th:text="#{list.crear}" href="create.html" class="btn btn-primary">Crear</a>
+        <div class="row">
+          <div th:each="producto : ${productos}" class="col-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <img th:src="'data:image/jpeg;base64,' + ${producto.imageView}" alt="" class="card-title" width="200em" height="200em">
+                <h5 th:text="${producto.nombre}" class="card-title">Producto</h5>
+                <p th:text="${producto.codigo}" class="card-text">Codigo producto.</p>
+                <p th:text="${producto.descripcion}" class="card-text">Descripción</p>
+                <p th:text="${producto.precio}" class="card-text">Precio</p>
+                <div th:if="${session ne null and session.pedido ne null}">
+                  <a class="btn btn-primary" th:href="@{/productos/addcesta/{codigo}/{cantidad}(codigo=${producto.codigo},cantidad=1)}" role="button"><i class="bi bi-cart3"></i></a>
+                </div>
+                <a th:href="@{/productos/edit/}+${producto.codigo}" th:text="#{list.editar}" href="edit.html" class="btn btn-primary">Editar</a>
+                <a th:href="@{/productos/delete/}+${producto.codigo}" th:text="#{list.borrar}" href="delete.html" class="btn btn-primary">Borrar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div th:replace="commons/pagination :: pagination"></div>
+
+    </div>
+
+  <div th:replace="commons/footer :: footer" class="container"></div>
+</body>
+</html>
