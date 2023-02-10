@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,9 +34,16 @@ public class User {
     @ManyToOne
     private Group group;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_permission", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private List<Permission> permissions;
+
+    public User() {
+    }
+
+    public User(int id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;
@@ -60,14 +68,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    // public List<Group> getGroups() {
-    //     return groups;
-    // }
-
-    // public void setGroups(List<Group> groups) {
-    //     this.groups = groups;
-    // }
 
     public List<Permission> getPermissions() {
         return permissions;

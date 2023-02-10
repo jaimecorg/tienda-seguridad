@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.jaimecorg.springprojects.tienda.model.Group;
 import com.jaimecorg.springprojects.tienda.model.Permission;
 import com.jaimecorg.springprojects.tienda.model.User;
 import com.jaimecorg.springprojects.tienda.repository.PermissionRepository;
@@ -27,51 +26,78 @@ class TiendaApplicationTests {
 
 	@Autowired
 	PasswordEncoder encoder;
+
 	@Test
 	void crearUsuariosTest() {
+
 		User u1 = new User();
 		u1.setId(1);
 		u1.setName("jaimecorg");
 		u1.setPassword(encoder.encode("1234"));
 		u1.setEmail("jaimecorg@gmail.com");
 
-		Group g1 = new Group();
-		g1.setId(1);
-		u1.setGroup(g1);
-
 		User u2 = new User();
 		u2.setId(2);
 		u2.setName("jaimecorg2");
 		u2.setPassword(encoder.encode("5555"));
 		u2.setEmail("jaimecorg2@gmail.com");
-		Group g2 = new Group();
-		g2.setId(2);
-		u2.setGroup(g2);
 
-		Permission p1 = new Permission();
-		p1.setId(1);
-		p1.setName("ADMIN");
+		User u3 = new User();
+		u3.setId(3);
+		u3.setName("jaimecorg3");
+		u3.setPassword(encoder.encode("5555"));
+		u3.setEmail("jaimecorg3@gmail.com");
+	
+		User u4 = new User();
+		u4.setId(4);
+		u4.setName("jaimecorg4");
+		u4.setPassword(encoder.encode("5555"));
+		u4.setEmail("jaimecorg4@gmail.com");
 
-		Permission p2 = new Permission();
-		p2.setId(2);
-		p2.setName("USER");
+		Permission permisoAdmin = new Permission();
+		permisoAdmin.setId(1);
+		permisoAdmin.setName("ADMIN");
 
-		List<Permission> permisos1 = new ArrayList<Permission>();
+		Permission permisoPedidos = new Permission();
+		permisoPedidos.setId(2);
+		permisoPedidos.setName("PEDIDOS");
 
-		permisos1.add(p1);
-		permisos1.add(p2);
+		Permission permisoClientesPermisos = new Permission();
+		permisoClientesPermisos.setId(3);
+		permisoClientesPermisos.setName("CLIENTESPERMISOS");
 
-		List<Permission> permisos2 = new ArrayList<Permission>();
-		permisos2.add(p2);
+		Permission permisoInicio = new Permission();
+		permisoInicio.setId(4);
+		permisoInicio.setName("INICIO");
 
-		u1.setPermissions(permisos1);
-		u2.setPermissions(permisos2);
+		List<Permission> listaPermisosTodos = new ArrayList<Permission>();
+		listaPermisosTodos.add(permisoAdmin);
+		listaPermisosTodos.add(permisoPedidos);
+		listaPermisosTodos.add(permisoClientesPermisos);
+		listaPermisosTodos.add(permisoInicio);
 
-		permissionRepository.save(p1);
-		permissionRepository.save(p2);
+		List<Permission> listaPermisosUsuario2 = new ArrayList<Permission>();
+		listaPermisosUsuario2.add(permisoPedidos);
+		listaPermisosUsuario2.add(permisoInicio);
+
+		List<Permission> listaPermisosUsuario3 = new ArrayList<Permission>();
+		listaPermisosUsuario3.add(permisoPedidos);
+		listaPermisosUsuario3.add(permisoClientesPermisos);
+		listaPermisosUsuario3.add(permisoInicio);
+
+		u1.setPermissions(listaPermisosTodos);
+		u2.setPermissions(listaPermisosUsuario2);
+		u3.setPermissions(listaPermisosUsuario3);
+
+		permissionRepository.save(permisoAdmin);
+		permissionRepository.save(permisoPedidos);
+		permissionRepository.save(permisoClientesPermisos);
+		permissionRepository.save(permisoInicio);
 
 		userRepository.save(u1);
 		User saveUser2 = userRepository.save(u2);
+		userRepository.save(u3);
+		userRepository.save(u4);
 
 		assertTrue(u2.getPassword().equalsIgnoreCase(saveUser2.getPassword()));
 

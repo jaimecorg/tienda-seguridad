@@ -43,9 +43,7 @@ public class UserService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
         User u = userRepository.findByName(username);
-
         List<Permission> permissions = u.getPermissions();
-
         List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
         
         for (Permission p : permissions){

@@ -27,6 +27,13 @@ public class Permission {
     @Transient
     private boolean hasPermission;
 
+    public Permission(int id) {
+        this.id = id;
+    }
+
+    public Permission() {
+    }
+    
     public long getId() {
         return id;
     }
@@ -50,14 +57,6 @@ public class Permission {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
-    // public List<Group> getGroups() {
-    //     return groups;
-    // }
-
-    // public void setGroups(List<Group> groups) {
-    //     this.groups = groups;
-    // }
 
     @Override
     public int hashCode() {

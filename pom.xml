@@ -8,7 +8,7 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.zeropokel.springprojects</groupId>
+	<groupId>com.jaimecorg.springprojects</groupId>
 	<artifactId>tienda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tienda</name>

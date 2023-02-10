@@ -5,11 +5,12 @@
     <div th:replace="commons/menu :: menu"></div>
 
     <div class="container">
-        <h1 th:text="$(greetings)">Hola</h1>
 
-        <span sec:authorize="isAuthenticated()">
-            | Logged
-        </span>
+        <div sec:authroize="isAuthenticated()">
+            <p>Logged user: <span sec:authentication="name"></span></p>
+            <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+            <a th:href="@{/logout}">Sign Out</a>
+        </div>
     </div>
 
     <div th:replace="commons/footer :: footer" class="container"></div>
