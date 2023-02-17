@@ -39,16 +39,10 @@ public class SecuriryConfig {
         UserDetails admin = User.builder()
             .username("admin")
             .password("{noop}admin*1234")
-            .authorities("USER", "ADMIN")
+            .authorities("USER","ADMIN")
             .build();
 
-            UserDetails cliente = User.builder()
-            .username("cliente")
-            .password("{noop}cliente*1234")
-            .authorities("CLIENTE")
-            .build();
-
-        return new InMemoryUserDetailsManager(user, admin, cliente);
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Bean
