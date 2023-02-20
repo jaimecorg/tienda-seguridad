@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.jaimecorg.springprojects.tienda.model.Contacto;
 import com.jaimecorg.springprojects.tienda.services.ContactosService;
 
+@Service
 public class ContactosServiceImpl implements ContactosService{
     
     @Value("${url.agenda.rest.service}")
@@ -35,13 +37,13 @@ public class ContactosServiceImpl implements ContactosService{
 
     @Override
     public void insert(Contacto contacto) {
-        // TODO Auto-generated method stub
+        restTemplate.postForObject(urlAgenda + "contactos", contacto, Contacto.class);
         
     }
 
     @Override
     public void update(Contacto contacto) {
-        // TODO Auto-generated method stub
+        restTemplate.put(urlAgenda + "contactos" + "/" + contacto.getId(), contacto);
         
     }
 

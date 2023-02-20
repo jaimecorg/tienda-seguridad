@@ -22,12 +22,6 @@ public class ContactoController {
     @Autowired
     ContactosService contactosService;
 
-    @GetMapping(value = "/list")
-    public ModelAndView list(Model model) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:list/1/id/asc");
-        return modelAndView;
-    }
 
     @GetMapping(value = "/list")
     public ModelAndView listPage(Model model) {
@@ -74,12 +68,12 @@ public class ContactoController {
     }
 
     @PostMapping(path = { "/update" })
-    public ModelAndView update(Contacto contacto) {
+    public ModelAndView update(Contacto contacto)
+            throws IOException {
 
         contactosService.update(contacto);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:edit/" + contacto.getId());
+        ModelAndView modelAndView = new ModelAndView("redirect:edit/" + contacto.getId());
 
         return modelAndView;
     }
@@ -90,8 +84,7 @@ public class ContactoController {
 
         contactosService.delete(id);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/contactos/list");
+        ModelAndView modelAndView = new ModelAndView("redirect:/contactos/list");
 
         return modelAndView;
     }

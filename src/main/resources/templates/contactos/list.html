@@ -24,13 +24,12 @@
                 <tbody>
                     <div th:each="contacto : ${contactos}" class="col-3">
                         <tr>
-                            <th scope="row" >1</th>
-                            <td th:text="$contacto.id">1</td>
-                            <td th:text="$contacto.nombre">Apellido</td>
-                            <td th:text="$contacto.email">111222333</td>
-                            <td th:text="$contacto.telefono">111222333</td>
-                            <td><a th:href="@{/contactos/edit/}+${contacto.id}" th:text="#{list.editar}" href="edit.html" class="btn btn-primary bi bi-pen"></a></td>
-                            <td><a th:href="@{/contactos/delete/}+${contacto.id}" th:text="#{list.borrar}" href="list.html" class="btn btn-primary bi bi-trash"></a></td>
+                          <th scope="row" th:text="${contacto.id}"></th>
+                          <td th:text="${contacto.nombre}"></td>
+                          <td th:text="${contacto.telefono}"></td>
+                          <td th:text="${contacto.email}"></td>
+                          <td><a th:href="@{/contactos/edit/}+${contacto.id}" th:text="#{list.editar}" href="edit.html" class="btn btn-primary bi bi-pen"></a></td>
+                          <td><a th:href="@{/contactos/delete/}+${contacto.id}" th:text="#{list.borrar}" href="list.html" class="btn btn-primary bi bi-trash"></a></td>
                         </tr>
                     </div>
                 </tbody>
