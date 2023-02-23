@@ -1,16 +1,18 @@
 package com.jaimecorg.springprojects.tienda.model;
 
-public class Contacto {
+import java.util.Date;
+
+public class Nota {
     
     private int id;
-    private String nombre;
-    private String telefono;
-    private String email;
+    private String titulo;
+    private Date fecha;
+    private String descripcion;
     
-    public Contacto() {
+    public Nota() {
     }
 
-    public Contacto(int id) {
+    public Nota(int id) {
         this.id = id;
     }
 
@@ -22,28 +24,28 @@ public class Contacto {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
@@ -62,10 +64,9 @@ public class Contacto {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Contacto other = (Contacto) obj;
+        Nota other = (Nota) obj;
         if (id != other.id)
             return false;
         return true;
     }
-
 }

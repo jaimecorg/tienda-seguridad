@@ -8,7 +8,7 @@ public interface ContactosService {
 
     public List<Contacto> findAll();
     public Contacto findByID(int id);
-    public void insert(Contacto contacto);
+    public Contacto insert(Contacto contacto);
     public void update(Contacto contacto);
     public void delete(int id);
 }

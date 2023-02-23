@@ -13,7 +13,7 @@ import com.jaimecorg.springprojects.tienda.services.ContactosService;
 
 @Service
 public class ContactosServiceImpl implements ContactosService{
-    
+
     @Value("${url.agenda.rest.service}")
     String urlAgenda;
 
@@ -24,32 +24,33 @@ public class ContactosServiceImpl implements ContactosService{
     public List<Contacto> findAll() {
         
         Contacto[] ca = restTemplate.getForObject(urlAgenda + "contactos", Contacto[].class);
-        List<Contacto> contactos  =Arrays.asList(ca);
+        List<Contacto> contactos = Arrays.asList(ca);
 
         return contactos;
     }
 
     @Override
     public Contacto findByID(int id) {
-        Contacto contacto = restTemplate.getForObject(urlAgenda + "contactos/{id}", Contacto.class, id);
-        return contacto;
+        Contacto ca = restTemplate.getForObject(urlAgenda + "contactos/" + id, Contacto.class);
+
+        return ca;
     }
 
     @Override
-    public void insert(Contacto contacto) {
-        restTemplate.postForObject(urlAgenda + "contactos", contacto, Contacto.class);
-        
+    public Contacto insert(Contacto contacto) {
+        Contacto ca = restTemplate.postForObject(urlAgenda + "contactos", contacto, Contacto.class);
+
+        return ca;
     }
 
     @Override
     public void update(Contacto contacto) {
-        restTemplate.put(urlAgenda + "contactos" + "/" + contacto.getId(), contacto);
-        
+        restTemplate.put(urlAgenda + "contactos/" + contacto.getId(), contacto);
     }
 
     @Override
     public void delete(int id) {
-        restTemplate.delete(urlAgenda + "contactos/{id}", id);
+        restTemplate.delete(urlAgenda + "contactos/" + id);
         
     }
     

@@ -52,5 +52,4 @@ public class ConfiguracionMensajes implements WebMvcConfigurer{
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
-
 }

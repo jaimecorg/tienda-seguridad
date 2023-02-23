@@ -5,21 +5,21 @@
 
     <div th:replace="commons/menu :: menu"></div>
     <div class="container-fluid">
-        <form class="row g-3" method="post" th:action="@{/contactos/save}">
+        <form class="row g-3" method="post" th:action="@{/notas/save}">
             <div class="col-md-4">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="nombre" class="form-control" id="nombre" name="nombre">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="titulo" class="form-control" id="titulo" name="titulo">
             </div>
             <div class="col-md-4">
-                <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" name="telefono">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
             </div>
             <div class="col-md-4">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="email" name="email">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion">
             </div>
             <div class="col-1">
-                <a th:href="@{/contactos/list}" href="list.html" class="btn btn-primary" th:text="#{list.atras}">Cancelar</a>
+                <a th:href="@{/notas/list}" href="list.html" class="btn btn-primary" th:text="#{list.atras}">Cancelar</a>
             </div>
             <div class="col-1">
                 <input type="submit" class="btn btn-primary" th:value="#{list.crear}"></input>
