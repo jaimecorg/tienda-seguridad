@@ -1,8 +1,12 @@
 package com.jaimecorg.springprojects.tienda.services.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +60,16 @@ public class NotasServiceImpl implements NotasService{
 
     @Override
     public List<Nota> findByTituloYFecha(String titulo, Date fecha) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByTituloYFecha'");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = dateFormat.format(fecha);
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("titulo", titulo);
+        params.put("fecha", date);
+        
+        Nota[] nt = restTemplate.getForObject(urlNota + "notas/buscar?titulo={titulo}&fecha={fecha}", Nota[].class, params);
+        List<Nota> notas = Arrays.asList(nt);
+
+        return notas;  
     }
 }

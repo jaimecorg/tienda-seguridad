@@ -2,21 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="commons/header :: header"></head>
 <body>
-
     <div th:replace="commons/menu :: menu"></div>
     <div class="container-fluid">
         <form class="row g-3" method="post" th:action="@{/notas/save}">
             <div class="col-md-4">
                 <label for="titulo" class="form-label">Título</label>
-                <input type="titulo" class="form-control" id="titulo" name="titulo">
+                <input type="titulo" class="form-control" id="titulo" name="titulo" th:value="${nota.titulo}">
             </div>
             <div class="col-md-4">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fecha" name="fecha">
+                <input type="date" class="form-control" id="fecha" name="fecha" th:value="${nota.fecha}">
             </div>
             <div class="col-md-4">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                <input type="text" class="form-control" id="descripcion" name="descripcion" th:value="${nota.descripcion}">
             </div>
             <div class="col-1">
                 <a th:href="@{/notas/list}" href="list.html" class="btn btn-primary" th:text="#{list.atras}">Cancelar</a>
